@@ -1,22 +1,35 @@
 #!/bin/bash
 
-# Compruebo si se pasaron 3 argumentos
-if [ $# -ne 3 ]; then
-    echo "Uso: $0 archivo_palabra.txt palabra_a_reemplazar nueva_palabra"
-    exit 1
-fi
+while true; do
+    echo ""
+    echo "===== MENÚ DE OPCIONES ====="
+    echo "1. Operaciones con dos números (script1.sh)"
+    echo "2. Mostrar archivos y tamaños en un directorio (script2.sh)"
+    echo "3. Buscar palabra en archivo (script3.sh)"
+    echo "4. Reemplazar palabra en archivo (script4.sh)"
+    echo "5. Salir"
+    read -p "Elige una opción [1-5]: " opcion
+    echo ""
 
-archivo="$1"
-palabra_antigua="$2"
-palabra_nueva="$3"
-
-# Verifico si el archivo existe
-if [ ! -f "$archivo" ]; then
-    echo "El archivo '$archivo' no existe."
-    exit 1
-fi
-
-# Reemplazo la palabra usando sed (en el mismo archivo)
-sed -i "s/\b$palabra_antigua\b/$palabra_nueva/g" "$archivo"
-
-echo "Reemplazo completado."
+    case $opcion in
+        1)
+            ./script1.sh
+            ;;
+        2)
+            ./script2.sh
+            ;;
+        3)
+            ./script3.sh
+            ;;
+        4)
+            ./script4.sh
+            ;;
+        5)
+            echo "Saliendo..."
+            break
+            ;;
+        *)
+            echo "Opción no válida. Intenta de nuevo."
+            ;;
+    esac
+done
